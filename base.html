@@ -45,6 +45,41 @@ try {
 var pageTracker = _gat._getTracker("UA-7467594-1");
 pageTracker._trackPageview();
 } catch(err) {}</script>
-{% endblock analytics %}
+
+
+<!-- <script src="//s3.amazonaws.com/totango-cdn/sdr.js"></script>
+<script type="text/javascript">
+jQuery(function() {
+  try {
+    var tracker = new __sdr("SP-1918-08");
+  } catch (err) {
+    var tracker = {
+      track:    function() {},
+      identify: function() {}
+    }
+  }
+  $('form').instrumentTracking();
+});
+</script>
+ -->
+
+<script src="//s3.amazonaws.com/totango-cdn/totango.js"></script>
+<script type="text/javascript">
+jQuery(function() {
+  try {
+    var totango = new __totango("SP-1918-08");
+  } catch (err) {
+      quite = function () {};
+      var totango = {
+        track: quite,
+        identify: quite,
+        setAccountAttributes: quite
+      };
+  }
+  $('form').instrumentTracking(totango);
+});
+</script>
+
+ {% endblock analytics %}
 </body>
 </html>

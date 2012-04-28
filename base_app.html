@@ -4,8 +4,10 @@
 {{css}}
 {% endblock page_css %}
 {% block page_js %}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript" src="/s/js/app.js?v={{version}}"></script>
+<script type="text/javascript" src="/s/js/jquery-totango-0.1.js" defer></script>
 <script type="text/javascript">
 {% block js_state_variables %}
 var __twg_init_q = '{{q|escape}}';
@@ -25,14 +27,17 @@ var TWITGRAPH_BASE_URL = '{{base_url}}';
 {% block content %}
 {% block content_heading %}{% endblock %}
 {% block inputs %}
-<form onSubmit="{% block on_submit %}twitgraph.Utils.onSubmit();{% endblock %}return false" id="form">
-  <div id="search-input">
+<form onSubmit="{% block on_submit %}twitgraph.Utils.onSubmit();{% endblock %}return false" id="form"
+  data-totango-module='twitgraph'
+  data-totango-organization='null corp'
+  data-totango-user='Random TwitGraph User'>
+  <div id="search-input" data-totango-activity='search'>
     <input id="q" value="{{q}}" class="text"/>
     <input type="submit" id="submit" value="Graph it"/>
   </div>
   <br class="clear"/>
   <div id="search-input-more">
-    <div id="divDateStatic" class="{% if dynamic_date %}date-type-lowlight{% else %}date-type-highlight{% endif %}">
+    <div id="divDateStatic" class="{% if dynamic_date %}date-type-lowlight{% else %}date-type-highlight{% endif %}" data-totango-activity='modify date'>
       <input type="radio" name="dateDynamic" value="0" id="dateDynamic0" {% if not dynamic_date %} checked="checked" {% endif %} onchange="twitgraph.Utils.highlightDateDynamic(false)"/>
       <label for="dateDynamic0">From </label>
       <input id="dateStart" class="text" value="{{start}}" size="10"/>
@@ -52,7 +57,7 @@ var TWITGRAPH_BASE_URL = '{{base_url}}';
   {% block embed_code %}
   <div id="embed">
     Embed: <br/>
-    <textarea id="embed-code" readonly="readonly" onclick="focus();select()"> </textarea>
+    <textarea id="embed-code" readonly="readonly" onclick="focus();select()" data-totango-activity='embed'> </textarea>
   </div>
   {% endblock %}
 </form>
