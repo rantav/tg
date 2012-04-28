@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>{% block title %}TwitGraph{% endblock %}</title>
+<link href="s/css/main.css?v={{version}}" rel="stylesheet" />
+{% block page_css %}{% endblock %}
+{% block page_js %}{% endblock %}
+</head>
+<body onload="{% block js_init_function %}{% endblock%}">
+<div id="Wrapper">
+  <div id="Container">
+    <div id="Header">
+      <div id="Logo">
+        <a href="/">TwitGraph</a>
+      </div>
+      {% block header %}{% endblock %}
+    </div>
+    <div id="Content">
+      <div id="inside-content">
+        <h1>{% block content_heading %}{%endblock%}</h1>
+        {% block content %}
+        {% endblock %}
+      </div>
+      <div id="HomeBottom">
+        {% block content_bottom %}{% endblock %}
+      </div>
+    </div>
+  </div>
+  <div style="clear:both;"></div>
+  <div id="Footer">
+    {% block footer %}
+    <a href="/about">About TwitGraph</a> | <a href="http://twitter.com/home?status=@rantav">Tweet me @rantav</a> or <a href="http://twitter.com/rantav">follow me</a> |
+    <a href="http://twitter.com">
+      <img style="border-width: 0px; vertical-align: middle;"
+               src="http://search.twitter.com/images/powered-by-twitter-badge.gif"
+               alt="Powered by twiter" title="Powered by twitter"/>
+    </a>
+    {% endblock footer %}
+  </div>
+</div>
+
+{% block analytics %}
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7467594-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+{% endblock analytics %}
+</body>
+</html>

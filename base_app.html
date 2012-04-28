@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block page_css %}
+{{css}}
+{% endblock page_css %}
+{% block page_js %}
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" src="/s/js/app.js?v={{version}}"></script>
+<script type="text/javascript">
+{% block js_state_variables %}
+var __twg_init_q = '{{q|escape}}';
+var __twg_init_dynamic_date = {% if dynamic_date %}true{% else %}false{% endif%};
+var __twg_init_start = '{{start|escape}}';
+var __twg_init_end = '{{end|escape}}';
+var __twg_init_duration = {{duration|escape}};
+var __twg_init_show_text = {% if show_text %}true{% else %}false{% endif%};
+
+var TWITGRAPH_BASE_URL = '{{base_url}}';
+{% endblock js_state_variables %}
+</script>
+{% endblock page_js %}
+
+{% block js_init_function %}twitgraph.Utils.init(){% endblock %}
+
+{% block content %}
+{% block content_heading %}{% endblock %}
+{% block inputs %}
+<form onSubmit="{% block on_submit %}twitgraph.Utils.onSubmit();{% endblock %}return false" id="form">
+  <div id="search-input">
+    <input id="q" value="{{q}}" class="text"/>
+    <input type="submit" id="submit" value="Graph it"/>
+  </div>
+  <br class="clear"/>
+  <div id="search-input-more">
+    <div id="divDateStatic" class="{% if dynamic_date %}date-type-lowlight{% else %}date-type-highlight{% endif %}">
+      <input type="radio" name="dateDynamic" value="0" id="dateDynamic0" {% if not dynamic_date %} checked="checked" {% endif %} onchange="twitgraph.Utils.highlightDateDynamic(false)"/>
+      <label for="dateDynamic0">From </label>
+      <input id="dateStart" class="text" value="{{start}}" size="10"/>
+      <label for="dateDynamic0">Until </label>
+      <input id="dateEnd" class="text" value="{{end}}" size="10"/>
+    </div>
+    <div id="divDateDynamic" class="{% if dynamic_date %}date-type-highlight{% else %}date-type-lowlight{% endif %}">
+      <input type="radio" name="dateDynamic" value="1" id="dateDynamic1"  {% if dynamic_date %} checked="checked" {% endif %} onchange="twitgraph.Utils.highlightDateDynamic(true)"/>
+      <label for="dateDynamic1">During the past</label>
+      <input id="duration" class="text" value="{{duration}}" size="3"/>
+      <label for="dateDynamic1"> days.</label>
+    </div>
+    <div id="show-text-div">
+      <input id="showText"  type="checkbox" {% if show_text %} checked="checked" {%endif%}/><label for="showText">Show Texts</label/>
+    </div>
+  </div>
+  {% block embed_code %}
+  <div id="embed">
+    Embed: <br/>
+    <textarea id="embed-code" readonly="readonly" onclick="focus();select()"> </textarea>
+  </div>
+  {% endblock %}
+</form>
+{% endblock inputs %}
+<div style="clear:both">&nbsp;</div>
+{% block graph %}
+        <div id="twg-graph"></div>
+        <div id="twg-graph-pie"></div>
+        <div id="twg-graph-gauge"></div>
+{% endblock %}
+{% block text_output %}
+        <div id="twg-resultsText"></div>
+{% endblock %}
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{%block page_css%}
+<style>
+.pos, .neg, .neu {
+  font-family: monospace;
+  padding-bottom: 0.3em;
+}
+.pos {
+color:green;
+}
+.neg {
+color:red;
+}
+.neu {
+color:blue;
+}
+</style>
+{% endblock %}
+{% block content_heading %}Learning Exaples{%endblock%}
+{% block content %}
+{% for t in tweets %}
+  <div class="{{t.sentiment}}">
+    {{t.text}} ({{t.query}})
+  </div>
+  {% endfor %}
+{% endblock %}

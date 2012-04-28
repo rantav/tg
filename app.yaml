@@ -1,0 +1,33 @@
+application: twitgraph
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /s/
+  static_dir: s/
+
+- url: /about
+  script: about.py
+
+- url: /learn
+  script: learn.py
+
+- url: /dbdrop
+  script: dbdrop.py
+
+- url: /embed_static
+  script: embed_static.py
+
+- url: /embed
+  script: embed.py
+
+- url: /results.json
+  script: results.py
+
+#- url: /about
+#  static_files: s/html/about.html
+#  upload: s/html/about.html
+
+- url: /.*
+  script: index.py

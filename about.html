@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content_heading %}About TwitGraph{% endblock %}
+{% block content %}
+<p><strong>TwitGraph</strong> is an experimental ("early beta") application I wrote over two sleepless nights to follow trends of the product I work on in my day job.</p>
+<p><strong>The idea is simple</strong>: enter a search term/query for twitter and get back a graph of how many times it's been used every day. You may look at, say the past 7 days or look over last June. A search term may simply be "<a href="http://twitgraph.appspot.com/?show_inputs=1&duration=7&q=youtube+annotations">youtube annotations</a>" or it may use #hashtags such as "<a href="http://twitgraph.appspot.com/?show_inputs=1&duration=7&q=%23youtube+annotations">#youtube annotations</a>", may have references to users, for example "<a href="http://twitgraph.appspot.com/?show_inputs=1&duration=7&q=from%3Arantav">from:rantav</a>" or "<a href="http://twitgraph.appspot.com/?show_inputs=1&duration=7&q=to%3Arantav">to:rantav</a>"</p>
+<p><strong>Development is (slowly) in progress</strong> and there are lots of improvements I plan to add (see my <a href="#todo">TODO</a> down there) but the basic functionality is already here and is quite impressive for the minial work put into it, so that's a very high thumbs up for Twitter for a very nice and easy to use API</p>
+<p><strong>My name is Ran</strong> and you're welcome to drop me a line at <a href="http://twitter.com/home?status=@rantav">@rantav</a>, send feedback or feature requests</p>
+<p><strong>Where's the code?</strong> The code is maintained under Google code <a href="http://code.google.com/p/twitgraph/">here</a>. So far technologies used are, except for HTML, JavaScript and CSS, <a href="http://code.google.com/appengine/docs/whatisgoogleappengine.html">Google App Engine</a>, <a href="http://apiwiki.twitter.com/Search+API+Documentation">Twitter Search API</a> and <a href="http://ajaxian.com/archives/jsonp-json-with-padding">JSONP</a>.  I'd love to get help, so feel free to contact me. The most pressing help I'd love to get is in web graphic design (someone with actually good taste in graphics unlike myself...) </p>
+
+
+<div id="todo">
+<h3>TODO</h3>
+<ol>
+  <li>Done - <span class="done">Better classification for Happy/Sad tweets. I currently use the twitter search operators :) and :( but I'm not happy with their results and I'd like to improve that. I've started a little research (see question on stackoverflow <a href="http://stackoverflow.com/questions/573768/sentiment-analysis-for-twitter-in-python">here</a>) but have not had the sleepless night to implement a classifier yet.</span></li>
+  <li>Improve performance for high frequency terms. When using twitgraph with a search term that's not so common, say "youtube annotations" you get results in after a few seconds. But when using a term more frequently used, say "youtube", the search results take loooooooong time to get back. The reason for that is a limitation in the twitter search API which caps the number of results per query at 100. So what I do it iterate over the first 100, then the next 100 to 200, then 200 to 300 etc until I get all results and then I graph them. The trouble is that when there are thousands of results, that may take many roundtrips and the application looks stuck. I've sent a <a href="http://help.twitter.com/requests/38462">query</a> over at twitter and I'm still waiting for suggestions how to improve that...</li>
+  <li>Design. It's ugly, I know... I can write HTML but writing a HTML that actually looks great is a whole different story... I'd be happy to get some help from a website designer :-)</li>
+  <li>Done <span class="done">Static image graphs. This is a nice feature I'd like to add. The graphs I'm curretnly using heavily rely on javascript, but in some cases what you want to have is a simple image with the grpah (for example, for embedding in email, where you're not allowed to execute javascript). So I'd like to add a servlet that given a query and a date range spits out a graph png</span></li>
+  <li>Mostly done - <span class="done">Add a speedometer for positive-vs-negative. Either a speedometer of a pie-chart will do, but speedomenter is way-cooler!</span> - Added a pie. Would like to add a speedometer as well</li>
+  <li>Add more control, and perhaps user choice for feelings, such as happy, sad, love, content, hate etc. Maybe do that by bucketing and getting more and more thesaurus from a thesaurus API (there must be one one there...)</li>
+  <li>Done: <span class="done">Improve embedding: Don't use that ugly iframe. Use a &lt;div&gt; and a script like all normal web-2-owish sites do. It's past 90's already man!</span></li>
+  <li>Allow sorting results by face (read: username)</li>
+  <li>how about a filter to show only good, bad, or neutral tweets? also a slider ui for the time window might be cool</li>
+</ol>
+</div>
+{% endblock content %}
+{%block content_bottom %}
+<p id="disclaimer"><strong>Disclaimer:</strong> TwitGraph is my own personal project and I work on it on my free time. It is neither encouraged nor discouraged by my <a href="http://www.google.com/">employee</a>. (actually, they don't know about it). No level of support is granted whatsoever, but a big smile is!</p>
+{% endblock %}
+<!-- git edited -->
