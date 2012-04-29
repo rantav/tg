@@ -67,16 +67,16 @@ jQuery(function() {
 <script type="text/javascript">
 jQuery(function() {
   try {
-    var totango = new __totango("SP-1918-08");
+    window.totango = new __totango("SP-1918-08");
   } catch (err) {
       quite = function () {};
-      var totango = {
+      window.totango = {
         track: quite,
         identify: quite,
         setAccountAttributes: quite
       };
   }
-  $('form').instrumentTracking(totango);
+  $('form').instrumentTracking();
 });
 </script>
 

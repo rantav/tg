@@ -106,6 +106,7 @@ onSubmit: function() {
   twitgraph.Globals.query_state = new twitgraph.QueryState(q, dynamic_date, start, end, duration, show_text);
   twitgraph.Utils.log(twitgraph.Globals.query_state);
   this.refresh();
+  $('#q').trackEvent({ activity: 'submit', tracker: window.totango });
 },
 
 /**
