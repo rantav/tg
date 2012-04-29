@@ -7,7 +7,10 @@
 {% block page_css %}{% endblock %}
 {% block page_js %}{% endblock %}
 </head>
-<body onload="{% block js_init_function %}{% endblock%}">
+<body onload="{% block js_init_function %}{% endblock%}"
+  data-totango-module='twitgraph'
+  data-totango-organization='null corp'
+  data-totango-user='Just a TwitGraph user'>
 <div id="Wrapper">
   <div id="Container">
     <div id="Header">

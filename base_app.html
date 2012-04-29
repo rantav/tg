@@ -27,10 +27,7 @@ var TWITGRAPH_BASE_URL = '{{base_url}}';
 {% block content %}
 {% block content_heading %}{% endblock %}
 {% block inputs %}
-<form onSubmit="{% block on_submit %}twitgraph.Utils.onSubmit();{% endblock %}return false" id="form"
-  data-totango-module='twitgraph'
-  data-totango-organization='null corp'
-  data-totango-user='Random TwitGraph User'>
+<form onSubmit="{% block on_submit %}twitgraph.Utils.onSubmit();{% endblock %}return false" id="form">
   <div id="search-input" data-totango-activity='search'>
     <input id="q" value="{{q}}" class="text"/>
     <input type="submit" id="submit" value="Graph it"/>

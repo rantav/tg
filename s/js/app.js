@@ -248,9 +248,6 @@ parseDate: function(s) {
  * Sends the server a tagged text for it to learn
  **/
 learn: function(tag, text, a) {
-//  if (a.className == 'twg-emoticon-selected') {
-//    return;
-//  }
   var query = twitgraph.Globals.query_state.q;
   text = unescape(text);
   this.log('Learning: ' + tag + '   ' + text + '  - Query: ' + query);
@@ -270,6 +267,7 @@ learn: function(tag, text, a) {
     allEmoticons[i].className = '';
   }
   a.className = 'twg-emoticon-selected';
+  $('#q').trackEvent({ activity: 'learn', tracker: window.totango });
 },
 
 onLearnDone: function(result) {
