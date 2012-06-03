@@ -49,40 +49,36 @@ var pageTracker = _gat._getTracker("UA-7467594-1");
 pageTracker._trackPageview();
 } catch(err) {}</script>
 
-
-<!-- <script src="//s3.amazonaws.com/totango-cdn/sdr.js"></script>
-<script type="text/javascript">
-jQuery(function() {
-  try {
-    var tracker = new __sdr("SP-1918-08");
-  } catch (err) {
-    var tracker = {
-      track:    function() {},
-      identify: function() {}
-    }
-  }
-  $('form').instrumentTracking();
-});
-</script>
- -->
-
 <script src="//s3.amazonaws.com/totango-cdn/totango.js"></script>
 <script type="text/javascript">
 jQuery(function() {
-  try {
-    window.totango = new __totango("SP-1918-08");
-  } catch (err) {
+    try {
+      window.totango = new __totango("SP-1918-08");
+    } catch (err) {
       quite = function () {};
       window.totango = {
         track: quite,
         identify: quite,
         setAccountAttributes: quite
       };
-  }
-  $('form').instrumentTracking();
+    }
+    $('form').instrumentTracking();
 });
 </script>
-
+<script>  
+  var totango_options = {  
+    service_id: "SP-1918-09",
+    username: "avon@example.com",  
+    account_status: "Free",
+    "sales manager": "Mr Selling",
+    tracker_name: "new_tracker"
+  };  
+  (function() {  
+    var e = document.createElement('script'); e.type = 'text/javascript'; e.async = true;  
+    e.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 's3.amazonaws.com/totango-cdn/totango2.js';  
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(e, s);  
+  })();  
+</script>  
  {% endblock analytics %}
 </body>
 </html>
